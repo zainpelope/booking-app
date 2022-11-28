@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/theme/app_color.dart';
 import '../../config/theme/app_font.dart';
@@ -28,12 +29,13 @@ class SecondaryButton extends StatelessWidget {
 
   Widget _type1() {
     return SizedBox(
-      height: 24,
+      height: 24.h,
       width: width,
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: AppColor.ink01),
+          backgroundColor: AppColor.ink06,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
           ),
@@ -48,12 +50,13 @@ class SecondaryButton extends StatelessWidget {
 
   Widget _type2() {
     return SizedBox(
-      height: 32,
+      height: 3.h,
       width: width,
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          side:  BorderSide(color: AppColor.ink01),
+          side:  const BorderSide(color: AppColor.ink01),
+          backgroundColor: AppColor.ink06,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
           ),
@@ -68,12 +71,13 @@ class SecondaryButton extends StatelessWidget {
 
   Widget _type3() {
     return SizedBox(
-      height: 40,
+      height: 40.h,
       width: width,
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: AppColor.ink01),
+          backgroundColor: AppColor.ink06,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
           ),
