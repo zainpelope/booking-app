@@ -26,7 +26,7 @@ class WelcomeDonePage extends StatelessWidget {
       backgroundColor: AppColor.accentGreen,
       body: Column(
         children: [
-          102.0.height,
+          60.0.height,
           const WelcomeImage(),
           24.0.height,
           const WelcomeTitle(),

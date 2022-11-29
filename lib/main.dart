@@ -1,3 +1,4 @@
+import 'package:booking_app/presentation/pages/discover/discover_view.dart';
 import 'package:booking_app/presentation/pages/welcome/login/login_view.dart';
 import 'package:booking_app/presentation/pages/welcome/welcome_done/welcome_done_view.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
               fontFamily: 'Poppins',
             ),
-            home: const WelcomeDonePage(),
+            home:  const DiscoverPage(),
           );
         });
   }
