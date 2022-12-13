@@ -1,3 +1,4 @@
+import 'package:booking_app/config/networking/api_client.dart';
 import 'package:booking_app/presentation/pages/discover/component/bottom_menu.dart';
 import 'package:booking_app/presentation/pages/discover/settings/settings_view.dart';
 import 'package:booking_app/presentation/pages/discover/trips/trips_view.dart';
@@ -14,6 +15,9 @@ class DiscoverPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ApiClient apiClient = ApiClient();
+    apiClient.get(Uri.parse(
+        "https://18d7be57-6a4f-4322-95dd-a88e031b3744.mock.pstmn.io/api/v1/trips"));
     return BlocProvider(
       create: (BuildContext context) => DiscoverCubit(),
       child: Builder(builder: (context) => _buildPage(context)),
