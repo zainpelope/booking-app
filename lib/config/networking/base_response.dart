@@ -67,4 +67,10 @@ class Result {
         yourRoomies: yourRoomies ?? this.yourRoomies,
         otherMatches: otherMatches ?? this.otherMatches,
       );
+  Map toJson() => {
+        'login': login,
+        'trips': trips?.toJson() ?? {},
+        'yourRoomies': yourRoomies?.map((e) => e.toJson()).toList() ?? [],
+        'otherMatches': otherMatches?.map((e) => e.toJson()).toList() ?? [],
+      };
 }

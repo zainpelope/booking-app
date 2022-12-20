@@ -15,12 +15,11 @@ class DiscoverPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ApiClient apiClient = ApiClient();
-    apiClient.get(Uri.parse(
-        "https://18d7be57-6a4f-4322-95dd-a88e031b3744.mock.pstmn.io/api/v1/trips"));
     return BlocProvider(
       create: (BuildContext context) => DiscoverCubit(),
-      child: Builder(builder: (context) => _buildPage(context)),
+      child: Builder(
+        builder: (context) => _buildPage(context),
+      ),
     );
   }
 
@@ -35,7 +34,7 @@ class DiscoverPage extends StatelessWidget {
             child: BlocBuilder<DiscoverCubit, DiscoverState>(
               builder: (context, state) {
                 return state.selectedIndex == 0
-                    ? TripsPage()
+                    ? const TripsPage()
                     : state.selectedIndex == 1
                         ? const FavoritePage()
                         : const SettingsPage();

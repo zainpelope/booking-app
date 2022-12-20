@@ -1,15 +1,15 @@
 import 'package:booking_app/config/theme/app_color.dart';
 import 'package:booking_app/config/theme/app_dimen.dart';
+import 'package:booking_app/config/theme/app_font.dart';
+import 'package:booking_app/data/model/trips/trips.dart';
 import 'package:booking_app/data/src/img_string.dart';
 import 'package:booking_app/extension/double_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/app_font.dart';
-
 class OtherMatches extends StatelessWidget {
-  const OtherMatches({Key? key}) : super(key: key);
+  const OtherMatches({Key? key, required this.otherMatches}) : super(key: key);
+  final List<Trips> otherMatches;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +27,14 @@ class OtherMatches extends StatelessWidget {
   Widget _roomiesList(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemBuilder: (c, i) => _roomiesItem(context),
-        itemCount: 3,
+        itemBuilder: (c, i) => _roomiesItem(context,otherMatches[i]),
+        itemCount: otherMatches.length,
         scrollDirection: Axis.horizontal,
       ),
     );
   }
 
-  Widget _roomiesItem(BuildContext context) {
+  Widget _roomiesItem(BuildContext context, Trips trips) {
     return Container(
       margin: EdgeInsets.only(
           left: AppDimen.w16, top: AppDimen.h24, bottom: AppDimen.h16),
@@ -58,11 +58,11 @@ class OtherMatches extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Zain",
+                trips?.name??"",
                 style: AppFont.pragraphLargeBold,
               ),
               Text(
-                "\$500",
+                "\$${trips.price??0}",
                 style: AppFont.pragraphSmall,
               ),
             ],

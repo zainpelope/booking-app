@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booking_app/utils/helper/pref_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
@@ -9,8 +10,11 @@ class ApiClient extends http.BaseClient {
   Future<http.StreamedResponse> send(http.BaseRequest request) {
     Logger.root.info(
         '==============================REQUEST==============================');
-    Logger.root.info('${request.method} ${request.url}');
-    Logger.root.info('${request.headers}');
+    if ((PrefHelper.instance.token ?? "").isNotEmpty) {
+      request.headers.addAll(
+        {"Authorization": "Bearer ${PrefHelper.instance.token}"},
+      );
+    }
 
     return request.send().then((value) {
       Logger.root.info('${request.headers} \n ${value.statusCode}');
@@ -35,8 +39,8 @@ class ApiClient extends http.BaseClient {
       Logger.root.info(
           '==============================RESPONSE==============================');
       Logger.root.info(value.body);
-      Logger.root
-          .info('====================================================================');
+      Logger.root.info(
+          '====================================================================');
 
       return value;
     }).catchError(
@@ -54,9 +58,11 @@ class ApiClient extends http.BaseClient {
     return super
         .post(url, headers: headers, body: body, encoding: encoding)
         .then((value) {
-      Logger.root.info('==============================RESPONSE==============================');
+      Logger.root.info(
+          '==============================RESPONSE==============================');
       Logger.root.info(value.body);
-      Logger.root.info('====================================================================');
+      Logger.root.info(
+          '====================================================================');
       return value;
     }).catchError(
       (err) {

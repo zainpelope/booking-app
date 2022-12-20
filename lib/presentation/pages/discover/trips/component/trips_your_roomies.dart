@@ -1,7 +1,9 @@
 import 'package:booking_app/config/config.dart';
 import 'package:booking_app/config/theme/app_dimen.dart';
 import 'package:booking_app/config/theme/app_font.dart';
+import 'package:booking_app/data/model/trips/trips.dart';
 import 'package:booking_app/extension/double_extension.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,28 +13,31 @@ import '../../../../../data/src/img_string.dart';
 import '../trips_cubit.dart';
 
 class TripsYourRoomies extends StatelessWidget {
-  const TripsYourRoomies({Key? key}) : super(key: key);
+  const TripsYourRoomies({Key? key, required this.yourRoomies})
+      : super(key: key);
+
+  final List<Trips> yourRoomies;
 
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<TripsCubit>(context);
     return Expanded(
       child: Column(
-        children: [_header(), _roomiesList()],
+        children: [_header(), _roomiesList(context)],
       ),
     );
   }
 
-  Widget _roomiesList() {
+  Widget _roomiesList(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemBuilder: (c, i) => _roomiesItem(),
-        itemCount: 3,
+        itemBuilder: (c, i) => _roomiesItem(yourRoomies[i]),
+        itemCount: yourRoomies.length,
       ),
     );
   }
 
-  Widget _roomiesItem() {
+  Widget _roomiesItem(Trips trips) {
     return Container(
       height: 72,
       margin: EdgeInsets.only(
@@ -54,11 +59,11 @@ class TripsYourRoomies extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Cara Ngoding",
+                  trips.name ?? '',
                   style: AppFont.pragraphMediumBold,
                 ),
                 Text(
-                  "Belajar Ngoding Bareng",
+                  trips.location ?? '',
                   style: AppFont.pragraphSmall.copyWith(color: AppColor.ink02),
                 ),
               ],
