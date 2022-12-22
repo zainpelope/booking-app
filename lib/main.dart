@@ -12,7 +12,7 @@ void main() async {
     AppRouter(),
   );
 
-  Logger.root.level = Level.ALL;
+  Logger.root.level = Level.OFF;
   Logger.root.onRecord.listen(
     (record) {
       debugPrint(record.message);

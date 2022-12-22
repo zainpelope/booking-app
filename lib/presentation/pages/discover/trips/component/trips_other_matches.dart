@@ -1,14 +1,22 @@
+import 'package:booking_app/config/networking/http_state.dart';
 import 'package:booking_app/config/theme/app_color.dart';
 import 'package:booking_app/config/theme/app_dimen.dart';
 import 'package:booking_app/config/theme/app_font.dart';
 import 'package:booking_app/data/model/trips/trips.dart';
 import 'package:booking_app/data/src/img_string.dart';
 import 'package:booking_app/extension/double_extension.dart';
-import 'package:flutter/material.dart';
+
+import 'package:booking_app/presentation/pages/discover/trips/trips_cubit.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logging/logging.dart';
 
 class OtherMatches extends StatelessWidget {
-  const OtherMatches({Key? key, required this.otherMatches}) : super(key: key);
+  const OtherMatches({
+    Key? key,
+    required this.otherMatches,
+  }) : super(key: key);
   final List<Trips> otherMatches;
 
   @override
@@ -16,21 +24,28 @@ class OtherMatches extends StatelessWidget {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _header(),
-          _roomiesList(context),
-        ],
+        children: [_header(), _roomiesList(context)],
       ),
     );
   }
 
   Widget _roomiesList(BuildContext context) {
+    final cubit = BlocProvider.of<TripsCubit>(context);
+    Logger.root.info('OtherMatches build ${cubit.state.status.name}');
     return Expanded(
-      child: ListView.builder(
-        itemBuilder: (c, i) => _roomiesItem(context,otherMatches[i]),
-        itemCount: otherMatches.length,
-        scrollDirection: Axis.horizontal,
-      ),
+      child: cubit.state.status == HttpStateStatus.loading
+          ? const Center(
+              child: CupertinoActivityIndicator(),
+            )
+          : cubit.state.status == HttpStateStatus.error
+              ? Center(
+                  child: Text("Error!!", style: AppFont.pragraphLargeBold),
+                )
+              : ListView.builder(
+                  itemBuilder: (c, i) => _roomiesItem(context, otherMatches[i]),
+                  itemCount: otherMatches.length,
+                  scrollDirection: Axis.horizontal,
+                ),
     );
   }
 
@@ -43,53 +58,29 @@ class OtherMatches extends StatelessWidget {
           left: AppDimen.w16,
           bottom: AppDimen.h16,
           top: 49.h),
-      width: (MediaQuery.of(context).size.width / 2) - AppDimen.w50,
+      width: (MediaQuery.of(context).size.width / 2) - AppDimen.w38,
       decoration: BoxDecoration(
         color: AppColor.ink06,
         borderRadius: BorderRadius.circular(AppDimen.w16),
       ),
       child: Column(
         children: [
-          Expanded(
-            child: Image.asset(ImgString.plants1),
-          ),
+          Expanded(child: Image.asset(ImgString.plants1)),
           37.0.height,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                trips?.name??"",
+              Expanded(
+                  child: Text(
+                trips.name ?? "",
                 style: AppFont.pragraphLargeBold,
-              ),
+                overflow: TextOverflow.ellipsis,
+              )),
               Text(
-                "\$${trips.price??0}",
+                "\$${trips.price ?? 0}",
                 style: AppFont.pragraphSmall,
-              ),
+              )
             ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _avatar() {
-    return SizedBox(
-      height: 56.w,
-      width: 56.w,
-      child: Stack(
-        children: [
-          Center(
-            child: CircleAvatar(
-              radius: 28.w,
-              backgroundColor: AppColor.ink03,
-            ),
-          ),
-          Center(
-            child: CircleAvatar(
-              radius: 26.w,
-              backgroundColor: AppColor.ink06,
-              backgroundImage: AssetImage(ImgString.avatar),
-            ),
           )
         ],
       ),
