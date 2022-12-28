@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter/material.dart';
 
 import '../../../../../config/theme/app_dimen.dart';
 import '../../../../../data/src/img_string.dart';
@@ -8,11 +9,10 @@ class WelcomeImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: AppDimen.w16),
-      child: Expanded(
-        child: Image.asset(ImgString.backdrop),
-      ),
-    );
+    return Expanded(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppDimen.w16),
+          child: Image.asset(ImgString.backdrop),
+        ));
   }
 }

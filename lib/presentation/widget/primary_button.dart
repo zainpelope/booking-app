@@ -1,6 +1,9 @@
-import 'package:booking_app/config/theme/theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../config/theme/app_color.dart';
+import '../../config/theme/app_font.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton(

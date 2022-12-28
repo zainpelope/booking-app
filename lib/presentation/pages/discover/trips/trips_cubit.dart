@@ -15,11 +15,11 @@ class TripsCubit extends Cubit<TripsState> implements HttpState {
     Logger.root.info(trips.result?.toJson());
     emit(
       state.clone()
-        ..youRoomies = trips.result?.yourRoomies ?? []
+        ..yourRoomies = trips.result?.yourRoomies ?? []
         ..otherMatches = trips.result?.otherMatches ?? [],
     );
     Logger.root.info(
-        'TripsCubit getTrips ${state.youRoomies.length} ${state.otherMatches.length}');
+        'TripsCubit getTrips ${state.yourRoomies.length} ${state.otherMatches.length}');
   }
 
   @override

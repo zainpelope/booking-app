@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../config/theme/app_color.dart';
@@ -10,7 +10,7 @@ class FavoriteTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return  Padding(
       padding: EdgeInsets.only(
         left: AppDimen.w16,
         right: AppDimen.w16,
@@ -25,16 +25,17 @@ class FavoriteTitle extends StatelessWidget {
           ),
           const Expanded(child: SizedBox()),
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              color: AppColor.ink02,
-            ),
-          ),
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search,
+                color: AppColor.ink02,
+              )),
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.star, color: AppColor.ink02),
-          ),
+              onPressed: () {},
+              icon: const Icon(
+                Icons.star,
+                color: AppColor.ink02,
+              )),
         ],
       ),
     );

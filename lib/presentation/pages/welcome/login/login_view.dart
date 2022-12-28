@@ -1,11 +1,15 @@
-import 'package:booking_app/utils/extension.dart';
+
+import 'package:booking_app/extension/double_extension.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/networking/http_state.dart';
 import 'component/login_footer.dart';
 import 'component/login_form.dart';
 import 'component/login_image.dart';
 import 'login_cubit.dart';
+import 'login_state.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -19,21 +23,29 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _buildPage(BuildContext context) {
-    final cubit = BlocProvider.of<LoginCubit>(context);
+    // final cubit = BlocProvider.of<LoginCubit>(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            36.0.height,
-            const LoginImage(),
-            48.0.height,
-            const LoginForm(),
-            16.0.height,
-            const LoginFooter(),
-          ],
-        ),
+      body: BlocBuilder<LoginCubit, LoginState>(
+        builder: (context, state) {
+          return state.httpStateStatus == HttpStateStatus.loading
+              ? const Center(
+            child: CupertinoActivityIndicator(),
+          )
+              : SingleChildScrollView(
+            child: Column(
+              children: [
+                60.0.height,
+                const LoginImage(),
+                48.0.height,
+                const LoginForm(),
+                16.0.height,
+                const LoginFooter(),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

@@ -1,8 +1,10 @@
-import 'package:booking_app/utils/extension.dart';
-import 'package:booking_app/presentation/widget/widget.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:booking_app/extension/double_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../widget/primary_button.dart';
+import '../../../widget/secondary_button.dart';
 import '../onboarding_cubit.dart';
 
 class OnboardingButton extends StatelessWidget {
@@ -24,7 +26,7 @@ class OnboardingButton extends StatelessWidget {
           onPressed: cubit.next,
           text: "Next",
           width: 147.5,
-        )
+        ),
       ],
     );
   }

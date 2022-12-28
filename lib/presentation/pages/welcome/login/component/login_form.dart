@@ -1,9 +1,10 @@
-import 'package:booking_app/config/config.dart';
-import 'package:booking_app/utils/extension.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:booking_app/extension/double_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../config/theme/app_dimen.dart';
+import '../../../../../config/theme/app_font.dart';
 import '../../../../widget/app_input_text.dart';
 import '../../../../widget/primary_button.dart';
 import '../login_cubit.dart';
@@ -20,26 +21,26 @@ class LoginForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Login',
+            "Login",
             style: AppFont.h3,
           ),
           16.0.height,
           AppInputText(
-            label: 'Email',
+            label: "Email",
             controller: cubit.state.emailController,
           ),
           16.0.height,
           AppInputText(
-            label: 'Password',
+            label: "Password",
             controller: cubit.state.passwordController,
           ),
           16.0.height,
           PrimaryButton(
             onPressed: cubit.login,
-            text: 'Login',
+            text: "Login",
             width: double.infinity,
             type: PrimaryButtonType.type3,
-          )
+          ),
         ],
       ),
     );

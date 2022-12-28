@@ -1,20 +1,25 @@
 import 'dart:convert';
 
-import 'package:booking_app/config/config.dart';
-import 'package:booking_app/data/repository/auth_repository.dart';
-
+import '../../config/networking/api_client.dart';
+import '../../config/networking/base_response.dart';
+import '../../config/networking/http_state.dart';
 import '../../data/endpoint/endpoint.dart';
+import '../../data/repository/auth_repository.dart';
+
+
 
 class AuthController implements AuthRepository {
   final ApiClient _client = ApiClient();
   final HttpState _httpState;
 
   AuthController(this._httpState);
+
   @override
   Future<BaseResponse> forgotPassword(String email) async {
     String method = "POST";
     String url = Endpoint.forgotPassword;
     _httpState.onStartRequest(url, method);
+
     late final BaseResponse baseResponse;
     final response = await _client.post(
       Uri.parse(url),
@@ -24,11 +29,17 @@ class AuthController implements AuthRepository {
     );
 
     _httpState.onEndRequest(url, method);
+
     if (response.statusCode < 500) {
-      _httpState.onSuccessRequest(url, method);
-      baseResponse = BaseResponse.fromJson(
-        jsonDecode(response.body),
-      );
+
+      if (response.statusCode > 199 && response.statusCode < 300) {
+        _httpState.onSuccessRequest(url, method);
+      } else {
+        _httpState.onErrorRequest(url, method);
+      }
+
+
+      baseResponse = BaseResponse.fromJson(jsonDecode(response.body));
     } else {
       _httpState.onErrorRequest(url, method);
       baseResponse = BaseResponse(message: response.body);
@@ -41,6 +52,7 @@ class AuthController implements AuthRepository {
     String method = "POST";
     String url = Endpoint.login;
     _httpState.onStartRequest(url, method);
+
     late final BaseResponse baseResponse;
     final response = await _client.post(
       Uri.parse(url),
@@ -57,9 +69,7 @@ class AuthController implements AuthRepository {
       } else {
         _httpState.onErrorRequest(url, method);
       }
-      baseResponse = BaseResponse.fromJson(
-        jsonDecode(response.body),
-      );
+      baseResponse = BaseResponse.fromJson(jsonDecode(response.body));
     } else {
       _httpState.onErrorRequest(url, method);
       baseResponse = BaseResponse(message: response.body);
@@ -72,6 +82,7 @@ class AuthController implements AuthRepository {
     String method = "POST";
     String url = Endpoint.logout;
     _httpState.onStartRequest(url, method);
+
     await _client.post(
       Uri.parse(url),
       body: {},
@@ -93,6 +104,7 @@ class AuthController implements AuthRepository {
     String method = "POST";
     String url = Endpoint.register;
     _httpState.onStartRequest(url, method);
+
     late final BaseResponse baseResponse;
     final response = await _client.post(
       Uri.parse(url),
@@ -102,17 +114,16 @@ class AuthController implements AuthRepository {
         'name': name,
       },
     );
+
     _httpState.onEndRequest(url, method);
+
     if (response.statusCode < 500) {
       if (response.statusCode > 199 && response.statusCode < 300) {
         _httpState.onSuccessRequest(url, method);
       } else {
         _httpState.onErrorRequest(url, method);
       }
-
-      baseResponse = BaseResponse.fromJson(
-        jsonDecode(response.body),
-      );
+      baseResponse = BaseResponse.fromJson(jsonDecode(response.body));
     } else {
       _httpState.onErrorRequest(url, method);
       baseResponse = BaseResponse(message: response.body);

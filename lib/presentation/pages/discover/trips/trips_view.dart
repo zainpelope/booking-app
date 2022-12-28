@@ -1,3 +1,5 @@
+
+import 'package:booking_app/presentation/pages/discover/trips/trips_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
@@ -5,7 +7,6 @@ import 'package:logging/logging.dart';
 import 'component/trips_other_matches.dart';
 import 'component/trips_your_roomies.dart';
 import 'trips_cubit.dart';
-import 'trips_state.dart';
 
 class TripsPage extends StatelessWidget {
   const TripsPage({super.key});
@@ -14,23 +15,20 @@ class TripsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => TripsCubit(),
-      child: Builder(
-        builder: (context) => _buildPage(context),
-      ),
+      child: Builder(builder: (context) => _buildPage(context)),
     );
   }
 
   Widget _buildPage(BuildContext context) {
     final cubit = BlocProvider.of<TripsCubit>(context);
     cubit.getTrips();
-
     return BlocBuilder<TripsCubit, TripsState>(
       builder: (context, state) {
-        Logger.root.info("TripsPage build");
+        Logger.root.info('TripsPage build');
         return Column(
           children: [
             TripsYourRoomies(
-              yourRoomies: cubit.state.youRoomies,
+              yourRoomies: cubit.state.yourRoomies,
             ),
             OtherMatches(
               otherMatches: state.otherMatches,

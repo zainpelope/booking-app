@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:booking_app/config/router/app_router.dart';
-import 'package:booking_app/data/model/auth/login.dart';
-import 'package:get_it/get_it.dart';
-import 'package:logging/logging.dart';
 
+import 'package:get_it/get_it.dart';
+
+import '../../../config/router/app_router.gr.dart';
 import 'welcome_state.dart';
 
 class WelcomeCubit extends Cubit<WelcomeState> {
@@ -11,12 +10,11 @@ class WelcomeCubit extends Cubit<WelcomeState> {
 
   AppRouter get _appRouter => GetIt.I<AppRouter>();
 
-  void handleBtnExplore(){
+  void handleBtnExplore() {
     _appRouter.replace(const DiscoverRoute());
   }
 
- void handleBtnLogin(){
-   _appRouter.push(const LoginRoute());
-
- }
+  void handleBtnLogin() {
+    _appRouter.push(const LoginRoute());
+  }
 }

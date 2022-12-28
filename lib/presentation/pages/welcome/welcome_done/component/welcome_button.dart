@@ -1,7 +1,8 @@
-import 'package:booking_app/presentation/widget/primary_button.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter/material.dart';
 
 import '../../../../../config/theme/app_dimen.dart';
+import '../../../../widget/primary_button.dart';
 
 class WelcomeButton extends StatelessWidget {
   const WelcomeButton({Key? key}) : super(key: key);

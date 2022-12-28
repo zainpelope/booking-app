@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/app_color.dart';
 import '../../../../../config/theme/app_dimen.dart';
@@ -34,12 +33,12 @@ class FavoriteList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Cara Ngoding",
-                    style: AppFont.pragraphMediumBold,
+                    "The Ngoding",
+                    style: AppFont.paragraphMediumBold,
                   ),
                   Text(
-                    "Palengaan Pamekasan",
-                    style: AppFont.pragraphSmall.copyWith(
+                    "Jakarta, Indonesia",
+                    style: AppFont.paragraphSmall.copyWith(
                       color: AppColor.ink02,
                     ),
                   ),

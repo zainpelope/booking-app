@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../discover_cubit.dart';
@@ -51,7 +51,7 @@ class BottomMenu extends StatelessWidget {
     bool isSelected = false,
   }) {
     return GestureDetector(
-      onTap: () {
+      onTap: (){
         onTap!();
       },
       child: Column(

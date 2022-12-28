@@ -1,10 +1,11 @@
-import 'package:booking_app/utils/extension.dart';
-import 'package:booking_app/presentation/pages/onboarding/onboarding_cubit.dart';
-import 'package:booking_app/presentation/pages/onboarding/onboarding_state.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:booking_app/extension/double_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/theme/app_font.dart';
+import '../onboarding_cubit.dart';
+import '../onboarding_state.dart';
 
 class OnboardingTitle extends StatelessWidget {
   const OnboardingTitle({Key? key}) : super(key: key);
@@ -27,8 +28,8 @@ class OnboardingTitle extends StatelessWidget {
               cubit.state.onboardingList[cubit.state.currentIndex]
                   .description ??
                   "",
-              style: AppFont.pragraphMedium,
               textAlign: TextAlign.center,
+              style: AppFont.paragraphMedium,
             ),
           ],
         );

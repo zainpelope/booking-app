@@ -1,23 +1,24 @@
-import 'package:booking_app/config/networking/http_state.dart';
-import 'package:booking_app/config/theme/app_color.dart';
-import 'package:booking_app/config/theme/app_dimen.dart';
-import 'package:booking_app/config/theme/app_font.dart';
-import 'package:booking_app/data/model/trips/trips.dart';
-import 'package:booking_app/data/src/img_string.dart';
-import 'package:booking_app/extension/double_extension.dart';
 
-import 'package:booking_app/presentation/pages/discover/trips/trips_cubit.dart';
+import 'package:booking_app/extension/double_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logging/logging.dart';
+
+import '../../../../../config/networking/http_state.dart';
+import '../../../../../config/theme/app_color.dart';
+import '../../../../../config/theme/app_dimen.dart';
+import '../../../../../config/theme/app_font.dart';
+import '../../../../../data/model/trips/trips.dart';
+import '../../../../../data/src/img_string.dart';
+import '../trips_cubit.dart';
 
 class OtherMatches extends StatelessWidget {
   const OtherMatches({
     Key? key,
     required this.otherMatches,
   }) : super(key: key);
-  final List<Trips> otherMatches;
+  final List<Trip> otherMatches;
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +36,21 @@ class OtherMatches extends StatelessWidget {
     return Expanded(
       child: cubit.state.status == HttpStateStatus.loading
           ? const Center(
-              child: CupertinoActivityIndicator(),
-            )
+        child: CupertinoActivityIndicator(),
+      )
           : cubit.state.status == HttpStateStatus.error
-              ? Center(
-                  child: Text("Error!!", style: AppFont.pragraphLargeBold),
-                )
-              : ListView.builder(
-                  itemBuilder: (c, i) => _roomiesItem(context, otherMatches[i]),
-                  itemCount: otherMatches.length,
-                  scrollDirection: Axis.horizontal,
-                ),
+          ?  Center(
+        child: Text("Error!!", style: AppFont.paragraphLargeBold),
+      )
+          : ListView.builder(
+        itemBuilder: (c, i) => _roomiesItem(context, otherMatches[i]),
+        itemCount: otherMatches.length,
+        scrollDirection: Axis.horizontal,
+      ),
     );
   }
 
-  Widget _roomiesItem(BuildContext context, Trips trips) {
+  Widget _roomiesItem(BuildContext context, Trip trip) {
     return Container(
       margin: EdgeInsets.only(
           left: AppDimen.w16, top: AppDimen.h24, bottom: AppDimen.h16),
@@ -70,15 +71,10 @@ class OtherMatches extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                  child: Text(
-                trips.name ?? "",
-                style: AppFont.pragraphLargeBold,
-                overflow: TextOverflow.ellipsis,
-              )),
+              Expanded(child: Text(trip.name ?? "", style: AppFont.paragraphLargeBold,overflow: TextOverflow.ellipsis,)),
               Text(
-                "\$${trips.price ?? 0}",
-                style: AppFont.pragraphSmall,
+                "\$${trip.price ?? 0}",
+                style: AppFont.paragraphSmall,
               )
             ],
           )

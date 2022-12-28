@@ -1,7 +1,8 @@
-import 'package:booking_app/config/theme/app_dimen.dart';
-import 'package:booking_app/utils/extension.dart';
-import 'package:flutter/cupertino.dart';
 
+import 'package:booking_app/extension/double_extension.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../../config/theme/app_dimen.dart';
 import '../../../../../config/theme/app_font.dart';
 
 class WelcomeTitle extends StatelessWidget {
@@ -20,7 +21,7 @@ class WelcomeTitle extends StatelessWidget {
           8.0.height,
           Text(
             "We've helped millions across the nation find their perfect match... and you're next!",
-            style: AppFont.pragraphSmall,
+            style: AppFont.paragraphSmall,
             textAlign: TextAlign.center,
           ),
         ],

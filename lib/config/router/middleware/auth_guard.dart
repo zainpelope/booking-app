@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booking_app/config/router/app_router.dart';
-import 'package:booking_app/utils/helper/pref_helper.dart';
+
+import '../../../utils/helper/pref_helper.dart';
+import '../app_router.gr.dart';
+
 
 class AuthGuard extends AutoRouteGuard {
   @override

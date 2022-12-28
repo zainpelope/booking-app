@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:booking_app/config/router/app_router.dart';
-import 'package:booking_app/utils/helper/pref_helper.dart';
+
 import 'package:get_it/get_it.dart';
 
+import '../../../config/router/app_router.gr.dart';
+import '../../../utils/helper/pref_helper.dart';
 import 'onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
@@ -28,8 +29,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     }
   }
 
-  void skip(){
-     PrefHelper.instance.setFirstInstall();
-     GetIt.I<AppRouter>().replace(const WelcomeRoute());
+  void skip() {
+    PrefHelper.instance.setFirstInstall();
+    GetIt.I<AppRouter>().replace(const WelcomeRoute());
   }
 }

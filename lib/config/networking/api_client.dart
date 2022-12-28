@@ -1,9 +1,9 @@
 import 'dart:convert';
-
-import 'package:booking_app/utils/helper/pref_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+
+import '../../utils/helper/pref_helper.dart';
 
 class ApiClient extends http.BaseClient {
   @override

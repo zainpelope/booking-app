@@ -17,5 +17,6 @@ class PrefHelper {
   Future<bool> setFirstInstall() async {
     return await _pref.setBool("isFirstInstall", false);
   }
+
   bool get isFirstInstall => _pref.getBool("isFirstInstall") ?? true;
 }

@@ -1,5 +1,5 @@
+
 import 'package:booking_app/extension/double_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,7 +30,7 @@ class FavoriteHeader extends StatelessWidget {
               children: [
                 Text(
                   "Itally",
-                  style: AppFont.pragraphSmall,
+                  style: AppFont.paragraphSmall,
                 ),
                 8.0.height,
                 Text(
