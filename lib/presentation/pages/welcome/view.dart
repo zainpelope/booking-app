@@ -1,10 +1,16 @@
+import 'package:booking/presentation/pages/welcome/component/welcome_button.dart';
+import 'package:booking/presentation/pages/welcome/component/welcome_image.dart';
+import 'package:booking/presentation/pages/welcome/component/welcome_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../config/theme/app_color.dart';
 import 'cubit.dart';
 import 'state.dart';
 
 class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -14,10 +20,16 @@ class WelcomePage extends StatelessWidget {
   }
 
   Widget _buildPage(BuildContext context) {
-    final cubit = BlocProvider.of<WelcomeCubit>(context);
+    return Scaffold(
 
-    return Container();
+      backgroundColor: AppColor.accentBlue,
+      body: Column(
+        children: const [
+          WelcomeTitle(),
+          WelcomeButton(),
+          WelcomeImage(),
+        ],
+      ),
+    );
   }
 }
-
-

@@ -1,4 +1,7 @@
 import 'package:booking/presentation/pages/onboarding/view.dart';
+import 'package:booking/presentation/pages/welcome/login/view.dart';
+import 'package:booking/presentation/pages/welcome/view.dart';
+import 'package:booking/presentation/pages/welcome/welcome_done/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             fontFamily: 'Poppins',
           ),
-          home: const OnboardingPage(),
+          home: const WelcomeDonePage(),
         );
       },
     );

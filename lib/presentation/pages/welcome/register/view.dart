@@ -5,6 +5,8 @@ import 'cubit.dart';
 import 'state.dart';
 
 class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
