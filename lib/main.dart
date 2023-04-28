@@ -2,6 +2,8 @@ import 'package:booking/presentation/widget/primary_button.dart';
 import 'package:booking/presentation/widget/secondary_button.dart';
 import 'package:flutter/material.dart';
 
+import 'data/src/img_string.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Poppins',
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -51,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have pushmany times:',
             ),
             Text(
               '$_counter',
@@ -62,19 +65,25 @@ class _MyHomePageState extends State<MyHomePage> {
               text: 'Download',
               width: 100,
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             SecondaryButton(
               onPressed: () {},
               text: 'Download',
               width: 100,
             ),
+            //Image.asset('assets/images/Città Giant Phone.png'),
+            Image.asset(ImgString.partyTime),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
