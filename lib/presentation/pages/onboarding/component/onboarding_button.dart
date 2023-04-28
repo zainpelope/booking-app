@@ -1,7 +1,8 @@
-import 'package:booking/extension/extension.dart';
+
 import 'package:booking/presentation/pages/onboarding/cubit.dart';
 import 'package:booking/presentation/widget/primary_button.dart';
 import 'package:booking/presentation/widget/secondary_button.dart';
+import 'package:booking/utils/extension/double_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

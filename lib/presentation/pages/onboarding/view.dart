@@ -1,4 +1,5 @@
-import 'package:booking/extension/extension.dart';
+
+import 'package:booking/utils/extension/double_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
