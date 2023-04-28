@@ -17,9 +17,13 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     }
   }
 
-  void goTo(int index){
-    if(index >= 0 && index < state.onboardingList.length){
+  void goTo(int index) {
+    if (index >= 0 && index < state.onboardingList.length) {
       emit(state.clone()..currentIndex = index);
     }
+  }
+
+  void skip(){
+    //TODO: implement skipp
   }
 }
