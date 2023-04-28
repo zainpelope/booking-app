@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             fontFamily: 'Poppins',
           ),
-          home: const WelcomeDonePage(),
+          home: const OnboardingPage(),
         );
       },
     );
