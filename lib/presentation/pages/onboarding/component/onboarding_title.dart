@@ -1,8 +1,9 @@
 import 'package:booking/config/config.dart';
 import 'package:booking/data/model/onboarding/onboarding.dart';
-import 'package:booking/extension/extension.dart';
+
 import 'package:booking/presentation/pages/onboarding/cubit.dart';
 import 'package:booking/presentation/pages/onboarding/state.dart';
+import 'package:booking/utils/extension/double_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
