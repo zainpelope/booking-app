@@ -1,3 +1,4 @@
+import 'package:booking/presentation/pages/discover/view.dart';
 import 'package:booking/presentation/pages/onboarding/view.dart';
 import 'package:booking/presentation/pages/welcome/login/view.dart';
 import 'package:booking/presentation/pages/welcome/view.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Poppins',
           ),
           home: const OnboardingPage(),
+          //home: const DiscoverPage(),
         );
       },
     );
