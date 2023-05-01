@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             fontFamily: 'Poppins',
           ),
-          home: const OnboardingPage(),
+          home: const LoginPage(),
           //home: const DiscoverPage(),
         );
       },
