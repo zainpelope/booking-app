@@ -36,7 +36,7 @@ class FavoriteHeader extends StatelessWidget {
                 Text(
                   "Meet new roomies and find new adventures.",
                   style: AppFont.h4.copyWith(
-                    height: 1.2.sp,
+                    height: 1.1.sp,
                   ),
                 ),
               ],

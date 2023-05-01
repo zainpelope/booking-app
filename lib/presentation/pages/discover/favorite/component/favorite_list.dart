@@ -1,5 +1,6 @@
 import 'package:booking/config/theme/app_color.dart';
 import 'package:booking/config/theme/app_dimen.dart';
+import 'package:booking/presentation/pages/discover/detail/view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,8 +13,18 @@ class FavoriteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        itemBuilder: (c, i) => _listItem(),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DetailPage(),
+            ),
+          );
+        },
+        child: ListView.builder(
+          itemBuilder: (c, i) => _listItem(),
+        ),
       ),
     );
   }
