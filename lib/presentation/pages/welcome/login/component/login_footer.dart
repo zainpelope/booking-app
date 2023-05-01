@@ -15,6 +15,7 @@ class LoginFooter extends StatelessWidget {
           text: TextSpan(
             children: [
               TextSpan(
+
                 text: 'Forgot Password',
                 style: AppFont.paragraphSmall.copyWith(
                   color: AppColor.ink02,

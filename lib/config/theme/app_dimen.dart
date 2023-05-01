@@ -68,4 +68,5 @@ class AppDimen {
   static double h60 = 60.0.h;
   static double h62 = 62.0.h;
   static double h64 = 64.0.h;
+  static double h68 = 68.0.h;
 }
