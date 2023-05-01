@@ -5,8 +5,13 @@ import 'package:booking/presentation/pages/welcome/view.dart';
 import 'package:booking/presentation/pages/welcome/welcome_done/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logging/logging.dart';
 
 void main() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    debugPrint(record.message);
+  });
   runApp(const MyApp());
 }
 
