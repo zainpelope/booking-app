@@ -12,8 +12,10 @@ class BaseResponse {
     message = json['message'];
     result = json['result'] != null ? Result.fromJson(json['result']) : null;
   }
+
   String? message;
   Result? result;
+
   BaseResponse copyWith({
     String? message,
     Result? result,
@@ -25,31 +27,22 @@ class BaseResponse {
 }
 
 class Result {
-  Result({
-    this.login,
-    this.trip,
-    this.yourRoomies,
-    this.otherMatches,
-  });
+  Result({this.login, this.trip, this.yourRoomies, this.otherMatches});
 
   Result.fromJson(dynamic json) {
     login = json['login'] != null ? Login.fromJson(json['login']) : null;
     trip = json['trip'] != null ? Trip.fromJson(json['trip']) : null;
     if (json['yourRoomies'] != null) {
       yourRoomies = [];
-      json['yourRoomies'].foreEach((v) {
-        yourRoomies?.add(
-          Trip.fromJson(json),
-        );
+      json['yourRoomies'].forEach((v) {
+        yourRoomies?.add(Trip.fromJson(v));
       });
     }
 
     if (json['otherMatches'] != null) {
       otherMatches = [];
-      json['yourRoomies'].foreEach((v) {
-        otherMatches?.add(
-          Trip.fromJson(json),
-        );
+      json['otherMatches'].forEach((v) {
+        otherMatches?.add(Trip.fromJson(v));
       });
     }
   }

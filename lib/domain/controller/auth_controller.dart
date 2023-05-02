@@ -4,23 +4,30 @@ import 'package:booking/config/config.dart';
 import 'package:booking/data/endpoint/endpoint.dart';
 import 'package:booking/data/repository/auth_repository.dart';
 
-import '../../config/networking/base_response.dart';
+
 
 class AuthController implements AuthRepository {
   final ApiClient _client = ApiClient();
   final HttpState _httpState;
 
   AuthController(this._httpState);
+
   @override
   Future<BaseResponse> forgotPassword(String email) async {
     String method = "POST";
     String url = Endpoint.forgotPassword;
     _httpState.onStartRequest(url, method);
+
     late final BaseResponse baseResponse;
-    final response = await _client.post(Uri.parse(url), body: {
-      'email': email,
-    });
+    final response = await _client.post(
+      Uri.parse(url),
+      body: {
+        'email': email,
+      },
+    );
+
     _httpState.onEndRequest(url, method);
+
     if (response.statusCode < 500) {
       _httpState.onSuccessRequest(url, method);
       baseResponse = BaseResponse.fromJson(jsonDecode(response.body));
@@ -28,7 +35,7 @@ class AuthController implements AuthRepository {
       _httpState.onErrorRequest(url, method);
       baseResponse = BaseResponse(message: response.body);
     }
-    return BaseResponse.fromJson(response);
+    return baseResponse;
   }
 
   @override
@@ -36,23 +43,29 @@ class AuthController implements AuthRepository {
     String method = "POST";
     String url = Endpoint.login;
     _httpState.onStartRequest(url, method);
+
     late final BaseResponse baseResponse;
-    final response = await _client.post(Uri.parse(url), body: {
-      'email': email,
-      'password': password,
-    });
-    _httpState.onErrorRequest(url, method);
+    final response = await _client.post(
+      Uri.parse(url),
+      body: {
+        'email': email,
+        'password': password,
+      },
+    );
+
+    _httpState.onEndRequest(url, method);
     if (response.statusCode < 500) {
-      if (response.statusCode >= 199 && response.statusCode < 300) {
+      if (response.statusCode > 199 && response.statusCode < 300) {
         _httpState.onSuccessRequest(url, method);
       } else {
-        (_httpState.onErrorRequest(url, method));
+        _httpState.onErrorRequest(url, method);
       }
       baseResponse = BaseResponse.fromJson(jsonDecode(response.body));
     } else {
+      _httpState.onErrorRequest(url, method);
       baseResponse = BaseResponse(message: response.body);
     }
-    return BaseResponse.fromJson(response);
+    return baseResponse;
   }
 
   @override
@@ -60,12 +73,15 @@ class AuthController implements AuthRepository {
     String method = "POST";
     String url = Endpoint.logout;
     _httpState.onStartRequest(url, method);
-    late final BaseResponse baseResponse;
-    await _client.post(Uri.parse(url), body: {}).then((value) {
-      if (value.statusCode >= 199 && value.statusCode < 300) {
+
+    await _client.post(
+      Uri.parse(url),
+      body: {},
+    ).then((value) {
+      if (value.statusCode > 199 && value.statusCode < 300) {
         _httpState.onSuccessRequest(url, method);
       } else {
-        (_httpState.onErrorRequest(url, method));
+        _httpState.onErrorRequest(url, method);
       }
     }).catchError((onError) {
       _httpState.onErrorRequest(url, method);
@@ -79,26 +95,30 @@ class AuthController implements AuthRepository {
     String method = "POST";
     String url = Endpoint.register;
     _httpState.onStartRequest(url, method);
+
     late final BaseResponse baseResponse;
-    final response = await _client.post(Uri.parse(url), body: {
-      'email': email,
-      'password': password,
-      'name': name,
-    });
+    final response = await _client.post(
+      Uri.parse(url),
+      body: {
+        'email': email,
+        'password': password,
+        'name': name,
+      },
+    );
 
     _httpState.onEndRequest(url, method);
+
     if (response.statusCode < 500) {
-      if (response.statusCode >= 199 && response.statusCode < 300) {
+      if (response.statusCode > 199 && response.statusCode < 300) {
         _httpState.onSuccessRequest(url, method);
       } else {
-        (_httpState.onErrorRequest(url, method));
+        _httpState.onErrorRequest(url, method);
       }
-
       baseResponse = BaseResponse.fromJson(jsonDecode(response.body));
     } else {
       _httpState.onErrorRequest(url, method);
       baseResponse = BaseResponse(message: response.body);
     }
-    return BaseResponse.fromJson(response);
+    return baseResponse;
   }
 }
