@@ -3,6 +3,8 @@ import 'package:booking/config/config.dart';
 import 'package:booking/domain/controller/auth_controller.dart';
 import 'package:logging/logging.dart';
 
+
+import '../../../../utils/helper/pref_helper.dart';
 import 'state.dart';
 
 class LoginCubit extends Cubit<LoginState> implements HttpState {
@@ -12,6 +14,8 @@ class LoginCubit extends Cubit<LoginState> implements HttpState {
   void login() async {
     BaseResponse baseResponse = await _authController.login(
         state.emailController.text, state.passwordController.text);
+    PrefHelper.instance.saveToken(baseResponse.result?.login?.token ?? "");
+    Logger.root.info("TOKENKU ${PrefHelper.instance.token}");
   }
 
   @override

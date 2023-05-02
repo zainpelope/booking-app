@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booking/utils/helper/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
@@ -10,6 +11,10 @@ class ApiClient extends http.BaseClient {
     debugPrint("${request.method} => ${request.url} \n ${request.headers}");
     Logger.root.info(
         "======================================REQUEST======================================");
+    if (PrefHelper.instance.token.isNotEmpty) {
+      request.headers
+          .addAll({"Authorization": "Bearer ${PrefHelper.instance.token}"});
+    }
     Logger.root.info('${request.method} ${request.url}');
     Logger.root.info('${request.headers}');
     Logger.root.info(
