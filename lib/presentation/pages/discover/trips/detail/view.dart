@@ -1,12 +1,14 @@
-import 'package:booking/presentation/pages/discover/detail/component/detail_button.dart';
-import 'package:booking/presentation/pages/discover/detail/component/detail_image.dart';
-import 'package:booking/presentation/pages/discover/detail/component/detail_title.dart';
+
 import 'package:booking/utils/extension/double_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-import '../../../../config/theme/app_color.dart';
+
+import '../../../../../config/theme/app_color.dart';
+import 'component/detail_button.dart';
+import 'component/detail_image.dart';
+import 'component/detail_title.dart';
 import 'cubit.dart';
 import 'state.dart';
 

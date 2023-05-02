@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/app_color.dart';
-import '../../../../../config/theme/app_dimen.dart';
-import '../../../../../config/theme/app_font.dart';
-import '../../../../../data/src/img_string.dart';
+import '../../../../../../config/theme/app_color.dart';
+import '../../../../../../config/theme/app_dimen.dart';
+import '../../../../../../config/theme/app_font.dart';
+import '../../../../../../data/src/img_string.dart';
 
 class DetailButton extends StatelessWidget {
   const DetailButton({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class DetailButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pop(context);
       },
       child: Container(
