@@ -1,11 +1,10 @@
 import 'package:booking/config/theme/app_color.dart';
 import 'package:booking/config/theme/app_dimen.dart';
-import 'package:booking/presentation/pages/discover/detail/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/app_font.dart';
+import '../../trips/detail/view.dart';
 
 class FavoriteList extends StatelessWidget {
   const FavoriteList({Key? key}) : super(key: key);
