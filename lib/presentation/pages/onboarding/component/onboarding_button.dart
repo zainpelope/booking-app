@@ -17,14 +17,7 @@ class OnboardingButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SecondaryButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => WelcomePage(),
-              ),
-            );
-          },
+          onPressed: cubit.skip,
           text: "Skip",
           width: 147.5,
         ),

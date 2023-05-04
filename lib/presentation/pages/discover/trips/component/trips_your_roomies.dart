@@ -1,41 +1,41 @@
 import 'package:booking/config/theme/app_color.dart';
+import 'package:booking/data/model/trip/trip.dart';
 import 'package:booking/data/src/img_string.dart';
-import 'package:booking/presentation/pages/discover/trips/cubit.dart';
 import 'package:booking/utils/extension/double_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../config/theme/app_dimen.dart';
 import '../../../../../config/theme/app_font.dart';
 
 class TripsYourRoomies extends StatelessWidget {
-  const TripsYourRoomies({Key? key}) : super(key: key);
+  const TripsYourRoomies({Key? key, required this.yourRoomies})
+      : super(key: key);
+  final List<Trip> yourRoomies;
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<TripsCubit>(context);
     return Expanded(
       child: Column(
         children: [
           _header(),
-          _roomiesList(),
+          _roomiesList(context),
         ],
       ),
     );
   }
 
-  Widget _roomiesList() {
+  Widget _roomiesList(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemBuilder: (c, i) => _roomiesItem(),
-        itemCount: 3,
+        itemBuilder: (c, i) => _roomiesItem(
+          yourRoomies[i],
+        ),
+        itemCount: yourRoomies.length,
       ),
     );
   }
 
-  Widget _roomiesItem() {
+  Widget _roomiesItem(Trip trip) {
     return Container(
       height: 72,
       margin: EdgeInsets.only(
@@ -64,11 +64,11 @@ class TripsYourRoomies extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Pelope",
+                  trip.name ?? "",
                   style: AppFont.paragraphMediumBold,
                 ),
                 Text(
-                  "Palengaan Daya",
+                  trip.location ?? "",
                   style: AppFont.paragraphSmall.copyWith(
                     color: AppColor.ink02,
                   ),

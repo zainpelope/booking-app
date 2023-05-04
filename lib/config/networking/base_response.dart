@@ -1,6 +1,5 @@
 import 'package:booking/data/model/auth/login.dart';
-
-import '../../data/model/trip/trip.dart';
+import 'package:booking/data/model/trip/trip.dart';
 
 class BaseResponse {
   BaseResponse({
@@ -64,4 +63,11 @@ class Result {
         yourRoomies: yourRoomies ?? this.yourRoomies,
         otherMatches: otherMatches ?? this.otherMatches,
       );
+
+  Map toJson() => {
+    'login': login,
+    'trip': trip?.toJson() ?? {},
+    'yourRoomies': yourRoomies?.map((e) => e.toJson()).toList() ?? [],
+    'otherMatches': otherMatches?.map((e) => e.toJson()).toList() ?? [],
+  };
 }
